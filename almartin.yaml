@@ -1,0 +1,24 @@
+name: almartin
+accent: '#268bd2' # Accent color for UI elements
+background: '#3b3b3b' # Terminal background color
+foreground: '#d5d5d5' # The foreground color
+details: darker # Whether the theme is lighter or darker
+terminal_colors: # Ansi escape colors
+  bright:
+    black: '#a4a4a4'
+    blue: '#82a8d1'
+    cyan: '#8cd1d4'
+    green: '#b0d2ac'
+    magenta: '#cfadd2'
+    red: '#e8928f'
+    white: '#fefefe'
+    yellow: '#f8d585'
+  normal:
+    black: '#a4a4a4'
+    blue: '#82a8d1'
+    cyan: '#8cd1d4'
+    green: '#b0d2ac'
+    magenta: '#cfadd2'
+    red: '#e8928f'
+    white: '#fefefe'
+    yellow: '#f8d585'
