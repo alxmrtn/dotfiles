@@ -9,8 +9,25 @@ alias lls="/bin/ls"
 alias ls="eza --icons"
 
 alias ltop="/usr/bin/top"
-alias top="bpytop"
+alias top="btm"
+
+alias lgrep="/usr/bin/grep"
+alias grep="rg"
 
 # git
 alias g="git"
 alias gc="git commit"
+
+# env
+function cenv() {
+  env -0 |\
+    sort -z |\
+    tr '\0' '\n' |\
+    sed -E $'s/^([^=]+)(=)(.*)/\033[33m\\1\033[0m\033[37m\\2\033[0m\033[32m\\3\033[0m/'
+}
+alias lenv="/usr/bin/env"
+alias env=cenv
+
+# tldr
+alias help=tldr
+alias h=tldr

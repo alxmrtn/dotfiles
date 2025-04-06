@@ -1,5 +1,9 @@
 # config root
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${XDG_CONFIG_HOME}/local/share"
+export XDG_STATE_HOME="${XDG_CONFIG_HOME}/local/state"
+export XDG_CACHE_HOME="${XDG_CONFIG_HOME}/cache"
+
 export CONFIG_ROOT=$XDG_CONFIG_HOME
 
 # brew
@@ -7,7 +11,6 @@ export HOMEBREW_BUNDLE_FILE="${CONFIG_ROOT}/brew/.brewfile"
 
 # zsh
 export ZDOTDIR="${CONFIG_ROOT}/zsh"
-export ZSH_SESSIONS_DIR="${CONFIG_ROOT}/zsh/.zsh_sessions"
 
 # zoxide/z
 export _ZO_DATA_DIR="${ZDOTDIR}/zoxide"
@@ -25,6 +28,11 @@ export EDITOR="code"
 
 # git
 export GIT_CONFIG_GLOBAL="${CONFIG_ROOT}/gh/.gitconfig"
+
+# java/maven/gradle
+export JAVA_TOOL_OPTIONS="-Djava.io.tmpdir=${XDG_CACHE_HOME}/java"
+export MAVEN_OPTS="-Dmaven.repo.local=${CONFIG_ROOT}/maven/m2"
+export GRADLE_USER_HOME="${CONFIG_ROOT}/gradle"
 
 # themes
 export BAT_THEME="ansi"
