@@ -2,13 +2,11 @@
 local no_install=false
 
 for arg in "$@"; do
-  if [ "$arg" = "--no-install" ]; then
-    no_install=true
-  fi
+  [ "$arg" = "--no-install" ] && no_install=true
 done
 
 local config_root="${HOME}/.config"
-mkdir -p $config_root
+mkdir -p $config_root/zsh
 
 cp zsh/.zshenv "${HOME}/.zshenv"
 cp zsh/.aliases $config_root/zsh/.aliases
@@ -31,6 +29,7 @@ source "${ZDOTDIR}/.zshrc"
 
 if ! $no_install; then
   brew bundle
+  mise install
 else
-  echo "skipping: brew bundle"
+  echo "skipping: brew bundle, mise install"
 fi

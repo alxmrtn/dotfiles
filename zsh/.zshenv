@@ -29,9 +29,17 @@ export EDITOR="code"
 # git
 export GIT_CONFIG_GLOBAL="${CONFIG_ROOT}/gh/.gitconfig"
 
+# azure
+export AZURE_CONFIG_DIR="${CONFIG_ROOT}/azure"
+export DOTNET_CLI_HOME="${CONFIG_ROOT}/dotnet"
+export NUGET_PACKAGES="${CONFIG_ROOT}/nuget/packages"
+export ASPNETCORE_APPDATA_PATH="${CONFIG_ROOT}/aspnet"
+
 # java/maven/gradle
-export JAVA_TOOL_OPTIONS="-Djava.io.tmpdir=${XDG_CACHE_HOME}/java"
-export MAVEN_OPTS="-Dmaven.repo.local=${CONFIG_ROOT}/maven/m2"
+export JAVA_TOOL_OPTIONS="-Djava.io.tmpdir=${XDG_CACHE_HOME}/java -Dazure.config.dir=${AZURE_CONFIG_DIR}"
+export MAVEN_USER_HOME="${CONFIG_ROOT}/maven"
+export M2_HOME="${MAVEN_USER_HOME}/m2"
+export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 export GRADLE_USER_HOME="${CONFIG_ROOT}/gradle"
 
 # themes
