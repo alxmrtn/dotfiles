@@ -15,7 +15,7 @@ done
 mkdir -p "${HOME}/.warp/themes"
 cp warp/almartin.yaml "${HOME}/.warp/themes/almartin.yaml"
 
-cp git/.gitconfig "${HOME}/.gitconfig"
+cp .gitconfig "${HOME}/.gitconfig"
 
 if ! command -v brew &>/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
