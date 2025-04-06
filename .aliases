@@ -1,0 +1,10 @@
+# util
+alias lcat="/bin/cat"
+alias cat="$(which bat)"
+alias c="cat"
+
+alias z="cd"
+
+# git
+alias g="git"
+alias gc="git commit"

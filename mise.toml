@@ -1,0 +1,6 @@
+# used to demo the venv indicator in the shell
+[tools]
+python = "3.13"
+
+[env]
+_.python.venv = { path = ".venv", create = true }

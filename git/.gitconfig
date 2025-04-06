@@ -1,0 +1,6 @@
+[alias]
+  pr = pull --rebase
+  st = status
+  co = checkout
+  unstage = reset HEAD --
+  fuck = reset HEAD --hard
