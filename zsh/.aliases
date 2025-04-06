@@ -3,7 +3,13 @@ alias lcat="/bin/cat"
 alias cat="$(which bat)"
 alias c="cat"
 
-alias z="cd"
+alias cd="z"
+
+alias lls="/bin/ls"
+alias ls="eza --icons"
+
+alias ltop="/usr/bin/top"
+alias top="bpytop"
 
 # git
 alias g="git"

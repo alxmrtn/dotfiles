@@ -125,7 +125,7 @@ prompt_purification_setup() {
   ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}%f%b "
 
   prompt_git_branch
-  RPROMPT='$(prompt_git_info) $(git_prompt_status)'
+  RPROMPT='$(prompt_git_info)$(git_prompt_status)'
   PROMPT='$(prompt_venv_info)$USER :: %2~ $(prompt_ret_status)'
 }
 
