@@ -1,6 +1,7 @@
 brew "bat"
 brew "gh"
 brew "mise"
+brew "ripgrep"
 brew "z"
 
 cask "font-hack-nerd-font"

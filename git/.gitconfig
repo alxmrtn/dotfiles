@@ -4,3 +4,7 @@
   co = checkout
   unstage = reset HEAD --
   fuck = reset HEAD --hard
+
+[user]
+  name = "Alexander Martin"
+  email = "alex@onthe.computer"
