@@ -31,3 +31,8 @@ alias env=cenv
 # tldr
 alias help=tldr
 alias h=tldr
+
+#cd
+alias ..="cd .."
+alias ...="cd ..."
+alias ....="cd ...."

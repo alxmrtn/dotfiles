@@ -6,5 +6,3 @@ eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 source $CONFIG_ROOT/zsh/.aliases
-
-. /opt/homebrew/etc/profile.d/z.sh

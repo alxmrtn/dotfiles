@@ -26,7 +26,7 @@ prompt_git_status() {
 
   STATUS=""
 
-  if $(echo "$INDEX" | command rg -E '^\?\? ' &> /dev/null); then
+  if $(echo "$INDEX" | command rg '^\?\? ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
   fi
 
@@ -60,41 +60,39 @@ prompt_git_status() {
     STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
   fi
 
-  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_STASHED$STATUS"
-  fi
+  # disable the branch statuses to speed up prompt
+  if [ -z "$GIT_DISABLE_PROMPT_BRANCH_STATUS" ] || [ "$GIT_DISABLE_PROMPT_BRANCH_STATUS" = "false" ]; then
+    if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+      STATUS="$ZSH_THEME_GIT_PROMPT_STASHED$STATUS"
+    fi
 
-  if $(echo "$INDEX" | rg '^UU ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
-  fi
+    if $(echo "$INDEX" | rg '^UU ' &> /dev/null); then
+      STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
+    fi
 
-  if $(echo "$INDEX" | rg '^## [^ ]\+ .*ahead' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD$STATUS"
-  fi
+    if $(echo "$INDEX" | rg '^## [^ ]\+ .*ahead' &> /dev/null); then
+      STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD$STATUS"
+    fi
 
-  if $(echo "$INDEX" | rg '^## [^ ]\+ .*behind' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND$STATUS"
-  fi
+    if $(echo "$INDEX" | rg '^## [^ ]\+ .*behind' &> /dev/null); then
+      STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND$STATUS"
+    fi
 
-  if $(echo "$INDEX" | rg '^## [^ ]\+ .*diverged' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DIVERGED$STATUS"
+    if $(echo "$INDEX" | rg '^## [^ ]\+ .*diverged' &> /dev/null); then
+      STATUS="$ZSH_THEME_GIT_PROMPT_DIVERGED$STATUS"
+    fi
   fi
 
   if [[ ! -z "$STATUS" ]]; then
     echo " [ $STATUS]"
+  else
+    echo " "
   fi
 }
 
-prompt_git_branch() {
-  autoload -Uz vcs_info
-  precmd_vcs_info() { vcs_info }
-  precmd_functions+=( precmd_vcs_info )
-  setopt prompt_subst
-  zstyle ':vcs_info:git:*' formats '%b'
-}
-
 prompt_git_info() {
-  [ ! -z "$vcs_info_msg_0_" ] && echo "${ZSH_THEME_GIT_PROMPT_PREFIX}%F{white}${vcs_info_msg_0_}%f${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+  branch=$(git branch --show-current 2>/dev/null)
+  [ ! -z "$branch" ] && echo "${ZSH_THEME_GIT_PROMPT_PREFIX}%F{white}${branch}%f${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 }
 
 prompt_venv_info() {
@@ -111,6 +109,7 @@ prompt_purification_setup() {
   ZSH_THEME_GIT_PROMPT_DIRTY=""
   ZSH_THEME_GIT_PROMPT_CLEAN=""
 
+  # if you can't see the symbols, install a nerd font
   ZSH_THEME_GIT_PROMPT_ADDED="%F{green}+%f "
   ZSH_THEME_GIT_PROMPT_MODIFIED="%F{blue}%f "
   ZSH_THEME_GIT_PROMPT_DELETED="%F{red}x%f "
@@ -121,9 +120,7 @@ prompt_purification_setup() {
   ZSH_THEME_GIT_PROMPT_BEHIND="%B%F{red}%f%b "
   ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}%f%b "
 
-  prompt_git_branch
+  setopt prompt_subst
   RPROMPT='$(prompt_git_info)$(prompt_git_status)'
   PROMPT='$(prompt_venv_info)$USER :: %2~ %B$(prompt_ret_status)%b'
 }
-
-prompt_purification_setup

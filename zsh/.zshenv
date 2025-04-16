@@ -28,6 +28,7 @@ export EDITOR="code"
 
 # git
 export GIT_CONFIG_GLOBAL="${CONFIG_ROOT}/gh/.gitconfig"
+export GIT_DISABLE_PROMPT_BRANCH_STATUS=true
 
 # azure
 export AZURE_CONFIG_DIR="${CONFIG_ROOT}/azure"
