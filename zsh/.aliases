@@ -4,7 +4,7 @@ function smart_cat() {
 
   # Check if the last argument is a file and has markdown extension
   if [[ -f "$last_arg" && "$last_arg" =~ \.(md|markdown|mdown|mkd)$ ]]; then
-    glow --style=pink "$@"
+    glow --width=0 --style=${CONFIG_ROOT}/glow/almartin.json "$@"
   else
     bat "$@"
   fi
@@ -73,3 +73,13 @@ alias ip="curl -s https://ipinfo.io/ip"
 alias lip="ifconfig | rg -o 'inet (addr:)?([0-9]*\.){3}[0-9]*' | rg -o '([0-9]*\.){3}[0-9]*' | rg -v '127.0.0.1'"
 alias server="python3 -m http.server"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
+
+# colors
+function colors() {
+  for i in {0..255}; do
+    printf "\e[38;5;${i}m%3d " $i
+    # Print newline every 16 colors to create table rows
+    (( (i + 1) % 16 == 0 )) && echo
+  done
+  echo -e "\e[0m" # Reset color
+}

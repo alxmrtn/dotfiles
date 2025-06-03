@@ -31,6 +31,8 @@ echo "🔗 Creating symlinks..."
 ln -sfF "${script_dir}/zsh/.zshenv" "${HOME}/.zshenv"
 ln -sfF "${script_dir}/zsh/.aliases" "${HOME}/.aliases"
 ln -sfF "${script_dir}/zsh/.zshrc" "${HOME}/.zshrc"
+
+ln -sfF "${script_dir}/glow/almartin.json" "${config_root}/glow/almartin.json"
 ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 
 # Link config folders
