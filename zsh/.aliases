@@ -1,18 +1,29 @@
-# util
+# cat
+function smart_cat() {
+  local last_arg="${@: -1}"
+
+  # Check if the last argument is a file and has markdown extension
+  if [[ -f "$last_arg" && "$last_arg" =~ \.(md|markdown|mdown|mkd)$ ]]; then
+    glow --style=pink "$@"
+  else
+    bat "$@"
+  fi
+}
 alias lcat="/bin/cat"
-alias cat="$(which bat)"
+alias cat="smart_cat"
 alias c="cat"
 
-alias cd="z"
-
+# ls
 alias lls="/bin/ls"
 alias ls="eza --icons --tree --level=0"
 alias la="ls -la"      # detailed list
 alias ll="ls -l"      # long format
 
+# top
 alias ltop="/usr/bin/top"
 alias top="btm"
 
+# grep
 alias lgrep="/usr/bin/grep"
 alias grep="rg"
 
@@ -46,6 +57,7 @@ alias timestamp="date +%s"
 alias iso="date -u +%Y-%m-%dT%H:%M:%SZ"
 
 #cd
+alias cd="z"
 alias ~="cd ~"
 alias -- -="cd -"
 alias ..="cd .."

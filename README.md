@@ -4,7 +4,7 @@
 * custom warp theme (it's pastels man it's not _that_ custom)
 * emojis in the bootstrap script
 
-### Install
+### install
 ```
 ./bootstrap.sh [--no-install] [--git-commit-email=<email@domain.com>]
 ```
