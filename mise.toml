@@ -1,4 +1,4 @@
-# used to test tool install
+# used to test tool install and venv creation
 [tools]
 python = "3.10.11"
 
