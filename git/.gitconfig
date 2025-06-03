@@ -1,0 +1,52 @@
+[alias]
+  aliases = config --get-regexp alias
+  br = branch
+  cb = checkout -b
+  co = checkout
+  d = diff
+  ds = diff --staged
+  fuck = reset HEAD --hard
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  lg = log --oneline --graph --decorate
+  pr = pull --rebase
+  st = status
+  undo = reset HEAD~1 --mixed
+  unstage = reset HEAD --
+
+[user]
+  name = "Alexander Martin"
+	email = alex@onthe.computer
+
+[core]
+  pager = "delta --config ${GIT_CONFIG_GLOBAL}"
+  syntax-theme = "ansi"
+
+[interactive]
+    diffFilter = "delta --color-only --config ${GIT_CONFIG_GLOBAL}"
+
+[delta]
+    features = decorations line-numbers
+    whitespace-error-style = black reverse
+    file-modified-label = "modified:"
+
+[delta "decorations"]
+    commit-style = magenta
+    commit-decoration-style = magenta box ul
+    file-style = bold yellow
+    file-decoration-style = yellow underline overline
+    hunk-header-style = bold blue line-number
+    hunk-header-decoration-style = blue box
+    minus-style = red
+    minus-emph-style = red
+    plus-style = green
+    plus-emph-style = green
+
+[delta "line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+    line-numbers-left-format = "{nm:>3}┊ "
+    line-numbers-right-format = "{np:>3}┊ "
+    line-numbers-left-style = red
+    line-numbers-right-style = green
+    line-numbers-zero-style = dim white

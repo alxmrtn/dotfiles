@@ -6,7 +6,9 @@ alias c="cat"
 alias cd="z"
 
 alias lls="/bin/ls"
-alias ls="eza --icons"
+alias ls="eza --icons --tree --level=0"
+alias la="ls -la"      # detailed list
+alias ll="ls -l"      # long format
 
 alias ltop="/usr/bin/top"
 alias top="btm"
@@ -32,7 +34,30 @@ alias env=cenv
 alias help=tldr
 alias h=tldr
 
+#shortcuts
+alias reload="source ~/.zshrc"
+alias edit="$EDITOR"
+alias path='echo -e ${PATH//:/\\n}'
+
+# date
+alias now='date +"%T"'
+alias today='date +"%d-%m-%Y"'
+alias timestamp="date +%s"
+alias iso="date -u +%Y-%m-%dT%H:%M:%SZ"
+
 #cd
+alias ~="cd ~"
+alias -- -="cd -"
 alias ..="cd .."
-alias ...="cd ..."
-alias ....="cd ...."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# util
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -"
+alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P"
+alias ip="curl -s https://ipinfo.io/ip"
+alias lip="ifconfig | rg -o 'inet (addr:)?([0-9]*\.){3}[0-9]*' | rg -o '([0-9]*\.){3}[0-9]*' | rg -v '127.0.0.1'"
+alias server="python3 -m http.server"
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
