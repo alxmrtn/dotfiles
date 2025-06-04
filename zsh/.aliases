@@ -1,9 +1,11 @@
+# shellcheck disable=SC2148
+
 # cat
 function smart_cat() {
-  local last_arg="${@: -1}"
+  local last_arg="${*: -1}"
 
   if [[ -f "$last_arg" && "$last_arg" =~ \.(md|markdown|mdown|mkd)$ ]]; then
-    glow --width=$COLUMNS --style=${CONFIG_ROOT}/glow/almartin.json "$@"
+    glow --width="${COLUMNS}" --style="${CONFIG_ROOT}/glow/almartin.json" "$@"
   else
     bat "$@"
   fi
@@ -46,7 +48,8 @@ alias h=tldr
 
 #shortcuts
 alias reload="source ~/.zshrc"
-alias edit="$EDITOR"
+# shellcheck disable=SC2139
+alias edit="${EDITOR}"
 alias path='echo -e ${PATH//:/\\n}'
 
 # date
@@ -76,7 +79,7 @@ alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 # colors
 function colors() {
   for i in {0..255}; do
-    printf "\e[38;5;${i}m%3d " $i
+    printf "\e[38;5;${i}m%3d " "${i}"
     # Print newline every 16 colors to create table rows
     (( (i + 1) % 16 == 0 )) && echo
   done
