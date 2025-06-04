@@ -1,16 +1,16 @@
 #!/bin/bash
-LAST_REMINDER_FILE="${CONFIG_ROOT}/brew/last_upgrade_reminder.txt"
+last_reminder_file="${CONFIG_ROOT}/brew/last_upgrade_reminder.txt"
 
-CURRENT_TIME=$(date +%s)
-LAST_TIME=$(lcat "$LAST_REMINDER_FILE" 2>/dev/null)
+current_time=$(date +%s)
+last_time=$(lcat "${last_reminder_file}" 2>/dev/null)
 
 # Calculate the difference in seconds (24 hours = 86400 seconds)
-TIME_DIFF=$((CURRENT_TIME - LAST_TIME))
-TWENTY_FOUR_HOURS=86400
+time_diff=$((current_time - last_time))
+twenty_four_hours=86400
 
 # Check if last_reminder file exists or if more than 24 hours have passed
-if [[ ! -f "$LAST_REMINDER_FILE" ]] || [[ $TIME_DIFF -gt $TWENTY_FOUR_HOURS ]]; then
+if [[ ! -f "${last_reminder_file}" ]] || [[ ${time_diff} -gt ${twenty_four_hours} ]]; then
     echo " Checking for outdated packages, run \`brew upgrade\` to upgrade..."
     brew outdated
-    echo "$CURRENT_TIME" > "$LAST_REMINDER_FILE"
+    echo "${current_time}" > "${last_reminder_file}"
 fi
