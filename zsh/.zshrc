@@ -11,7 +11,6 @@ eval "$(zoxide init zsh)"
 export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"
 export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 
-# shellcheck disable=SC1091
 source "${HOME}/.aliases"
 
 # check for outdated packages once a day

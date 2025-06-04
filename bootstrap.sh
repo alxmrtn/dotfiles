@@ -1,5 +1,5 @@
-#! /bin/bash
-# shellcheck disable=SC1091
+#! /bin/zsh
+# shellcheck disable=SC1091,SC1071
 
 set -e  # Exit on error
 
@@ -100,6 +100,18 @@ if [[ "$no_install" == false ]]; then
     mise install
   else
     echo " Error: mise command not found after installation"
+    exit 1
+  fi
+
+  # TODO: manage this via brewfile or something else this sucks
+  if command -v cursor &>/dev/null; then
+    cursor --install-extension github.vscode-github-actions --force
+    cursor --install-extension davidanson.vscode-markdownlint --force
+    cursor --install-extension ms-vscode.vscode-typescript-next --force
+    cursor --install-extension ms-vscode.vscode-typescript-tslint-plugin --force
+    cursor --install-extension timonwong.shellcheck --force
+  else
+    echo " Error: cursor command not found after installation"
     exit 1
   fi
 else

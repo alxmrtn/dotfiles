@@ -17,6 +17,7 @@ export MISE_DATA_DIR="${MISE_ROOT}/data"
 
 # brew
 export HOMEBREW_BUNDLE_FILE="${CONFIG_ROOT}/brew/.brewfile"
+export HOMEBREW_BREWFILE_CURSOR=1
 
 # zoxide/z
 export _ZO_DATA_DIR="${CONFIG_ROOT}/zsh/zoxide"

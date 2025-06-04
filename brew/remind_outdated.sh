@@ -1,4 +1,6 @@
-#!/bin/bash
+#! /bin/zsh
+# shellcheck disable=SC2148,SC1071
+
 last_reminder_file="${CONFIG_ROOT}/brew/last_upgrade_reminder.txt"
 
 current_time=$(date +%s)
