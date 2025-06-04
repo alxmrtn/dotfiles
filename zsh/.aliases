@@ -2,7 +2,6 @@
 function smart_cat() {
   local last_arg="${@: -1}"
 
-  # Check if the last argument is a file and has markdown extension
   if [[ -f "$last_arg" && "$last_arg" =~ \.(md|markdown|mdown|mkd)$ ]]; then
     glow --width=$COLUMNS --style=${CONFIG_ROOT}/glow/almartin.json "$@"
   else
@@ -15,7 +14,7 @@ alias c="cat"
 
 # ls
 alias lls="/bin/ls"
-alias ls="eza --icons --tree --level=0"
+alias ls="eza --icons --tree --level=0 -a --sort=type"
 alias la="ls -la"      # detailed list
 alias ll="ls -l"      # long format
 

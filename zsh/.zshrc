@@ -10,3 +10,6 @@ export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"
 export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 
 source ${HOME}/.aliases
+
+# check for outdated packages once a day
+source ${CONFIG_ROOT}/brew/remind_outdated.sh

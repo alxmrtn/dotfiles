@@ -81,8 +81,6 @@ prompt_git_info_combined() {
     git_info="$ZSH_THEME_GIT_PROMPT_PREFIX%F{white}$BRANCH%f$ZSH_THEME_GIT_PROMPT_SUFFIX"
     if [[ -n "$STATUS" ]]; then
       git_info="$git_info [ $STATUS]"
-    else
-      git_info="$git_info"
     fi
   fi
 
