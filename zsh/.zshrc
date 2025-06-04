@@ -1,4 +1,4 @@
-# shellcheck disable=SC2148
+# shellcheck disable=SC2148,SC1091
 
 source "${CONFIG_ROOT}/prompt/setup_prompt.sh"
 autoload -Uz setup_prompt.sh && prompt_purification_setup

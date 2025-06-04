@@ -7,5 +7,5 @@ shellcheck = "latest"
 _.python.venv = { path = ".venv", create = true }
 
 [tasks.shellcheck]
-run = "shellcheck -x **/*.sh zsh/.aliases zsh/.zsh*"
+run = "shellcheck -x *.sh **/*.sh zsh/.aliases zsh/.zsh*"
 alias = "sc"

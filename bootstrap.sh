@@ -1,4 +1,5 @@
 #! /bin/bash
+# shellcheck disable=SC1091
 
 set -e  # Exit on error
 
@@ -40,7 +41,7 @@ ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 # TODO: Figure out how to sync cursor settings like installed extensions, etc.
 
 # Link config folders
-folders=("brew" "git" "prompt" "vim", "glow")
+folders=("brew" "git" "prompt" "vim" "glow")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"
