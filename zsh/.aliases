@@ -56,9 +56,9 @@ alias timestamp="date +%s"
 alias iso="date -u +%Y-%m-%dT%H:%M:%SZ"
 
 #cd
-alias cd="z"
-alias ~="cd ~"
-alias -- -="cd -"
+alias -- cd="z"
+alias ~="cd ~"    # ~
+alias -- -="cd -" # -
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

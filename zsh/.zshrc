@@ -1,5 +1,5 @@
-source ${CONFIG_ROOT}/prompt/setup_prompt
-autoload -Uz setup_prompt && prompt_purification_setup
+source ${CONFIG_ROOT}/prompt/setup_prompt.sh
+autoload -Uz setup_prompt.sh && prompt_purification_setup
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(${MISE_INSTALL_PATH} activate zsh)"

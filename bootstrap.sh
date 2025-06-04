@@ -32,11 +32,15 @@ ln -sfF "${script_dir}/zsh/.zshenv" "${HOME}/.zshenv"
 ln -sfF "${script_dir}/zsh/.aliases" "${HOME}/.aliases"
 ln -sfF "${script_dir}/zsh/.zshrc" "${HOME}/.zshrc"
 
-ln -sfF "${script_dir}/glow/almartin.json" "${config_root}/glow/almartin.json"
+# App specific symlinks that don't respect the XDG_CONFIG_HOME variable
+
+# Warp
 ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 
+# TODO: Figure out how to sync cursor settings like installed extensions, etc.
+
 # Link config folders
-folders=("brew" "git" "prompt" "vim")
+folders=("brew" "git" "prompt" "vim", "glow")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"
