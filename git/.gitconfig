@@ -13,6 +13,9 @@
   undo = reset HEAD~1 --mixed
   unstage = reset HEAD --
 
+[push]
+	autoSetupRemote = true
+
 [user]
   name = "Alexander Martin"
 	email = alex@onthe.computer

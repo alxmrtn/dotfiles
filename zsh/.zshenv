@@ -24,6 +24,7 @@ export _ZO_DATA_DIR="${CONFIG_ROOT}/zsh/zoxide"
 export _Z_DATA="${CONFIG_ROOT}/zsh/.z"
 
 # hist
+export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
