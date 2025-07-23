@@ -18,7 +18,7 @@
 
 [user]
   name = "Alexander Martin"
-	email = alex@onthe.computer
+  email = alex@onthe.computer
 
 [core]
   pager = "delta --config ${GIT_CONFIG_GLOBAL}"
@@ -53,3 +53,7 @@
     line-numbers-left-style = red
     line-numbers-right-style = green
     line-numbers-zero-style = dim white
+
+[filter "ignore-email-changes"]
+    clean = sed 's/email = alex@onthe.computer
+    smudge = cat
