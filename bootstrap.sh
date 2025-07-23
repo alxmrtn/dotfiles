@@ -41,7 +41,7 @@ ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 # TODO: Figure out how to sync cursor settings like installed extensions, etc.
 
 # Link config folders
-folders=("brew" "git" "prompt" "vim" "glow")
+folders=("brew" "git" "prompt" "vim" "glow" "cursor")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"
@@ -107,14 +107,24 @@ if [[ "$no_install" == false ]]; then
     exit 1
   fi
 
-  # TODO: manage this via brewfile or something else this sucks
   if command -v cursor &>/dev/null; then
-    cursor --install-extension github.vscode-github-actions --force
-    cursor --install-extension davidanson.vscode-markdownlint --force
-    cursor --install-extension ms-vscode.vscode-typescript-next --force
-    cursor --install-extension redhat.vscode-yaml --force
-    cursor --install-extension timonwong.shellcheck --force
-    cursor --install-extension vue.volar --force
+    extensions_file="${config_root}/cursor/extensions.txt"
+
+    if [[ -f "$extensions_file" ]]; then
+      # Build command with multiple --install-extension flags
+      install_cmd="cursor"
+      while IFS= read -r extension; do
+        # Skip empty lines and comments
+        if [[ -n "$extension" && ! "$extension" =~ ^[[:space:]]*# ]]; then
+          install_cmd+=" --install-extension $extension"
+        fi
+      done < "$extensions_file"
+      install_cmd+=" --force"
+      eval "$install_cmd"
+    else
+      echo "❌ Error: extensions file not found at $extensions_file"
+      exit 1
+    fi
   else
     echo "❌ Error: cursor command not found after installation"
     exit 1

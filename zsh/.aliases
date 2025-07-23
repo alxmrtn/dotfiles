@@ -1,4 +1,4 @@
-# shellcheck disable=SC2148
+# shellcheck disable=SC2148,SC2139
 
 # cat
 function smart_cat() {
@@ -16,7 +16,7 @@ alias c="cat"
 
 # ls
 alias lls="/bin/ls"
-alias ls="eza --icons --tree --level=0 -a --sort=type"
+alias ls="eza --icons --tree --level=1 -a --sort=type"
 alias la="ls -la"      # detailed list
 alias ll="ls -l"      # long format
 
@@ -48,8 +48,8 @@ alias h=tldr
 
 #shortcuts
 alias reload="source ~/.zshrc"
-# shellcheck disable=SC2139
 alias edit="${EDITOR}"
+alias code="${EDITOR}"
 alias path='echo -e ${PATH//:/\\n}'
 
 # date
@@ -67,6 +67,41 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+# kubectl
+alias k="kubectl"
+alias kc="kubectx"
+alias kx="kubectx"
+
+# docker
+alias d="docker"
+alias dc="docker compose"
+alias dps="docker ps"
+alias di="docker images"
+alias dex="docker exec -it"
+
+# aws
+alias aws-whoami="aws sts get-caller-identity --output table"
+alias aws-regions="aws ec2 describe-regions --query 'Regions[].RegionName' --output table"
+alias aws-buckets="aws s3api list-buckets --output table --no-cli-pager"
+
+# network
+alias pg="gping"
+alias bw="bandwhich"
+
+# system info
+alias ff="fastfetch"
+alias info="fastfetch"
+
+# container runtime
+alias lima="colima"
+
+# secrets management
+alias dp="doppler"
+
+# command correction
+alias f="thefuck"
+alias wtf="thefuck"
 
 # util
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -"

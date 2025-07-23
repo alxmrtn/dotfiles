@@ -1,0 +1,17 @@
+coderabbit.coderabbit-vscode
+davidanson.vscode-markdownlint
+dbaeumer.vscode-eslint
+github.vscode-github-actions
+hashicorp.terraform
+ms-vscode.vscode-typescript-next
+redhat.java
+redhat.vscode-yaml
+timonwong.shellcheck
+tombi-toml.tombi
+vscjava.vscode-gradle
+vscjava.vscode-java-debug
+vscjava.vscode-java-dependency
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+vscjava.vscode-maven
+vue.volar
