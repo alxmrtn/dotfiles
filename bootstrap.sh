@@ -41,7 +41,7 @@ ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 # TODO: Figure out how to sync cursor settings like installed extensions, etc.
 
 # Link config folders
-folders=("brew" "git" "prompt" "vim" "glow" "cursor")
+folders=("brew" "git" "prompt" "vim" "glow" "cursor" "aws" "docker" "tombi")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"
@@ -85,6 +85,12 @@ if ! command -v "${MISE_INSTALL_PATH}" &>/dev/null; then
 else
   echo "🔧 mise already installed"
 fi
+
+# Set up npm config
+echo "🔧 Setting up npm config..."
+echo "cache = \"${config_root}/cache/npm\"" > "${HOME}/.npmrc"
+echo "logs-dir = \"${config_root}/npm/logs\"" >> "${HOME}/.npmrc"
+echo "userconfig = \"${config_root}/npm/config\"" >> "${HOME}/.npmrc"
 
 # Final setup
 echo "🔄 Reloading shell configuration..."

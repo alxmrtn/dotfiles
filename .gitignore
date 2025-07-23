@@ -1,2 +1,3 @@
 .venv
 brew/last_upgrade_reminder*
+docker/contexts/*
