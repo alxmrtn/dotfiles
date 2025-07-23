@@ -25,35 +25,35 @@
   syntax-theme = "ansi"
 
 [interactive]
-    diffFilter = "delta --color-only --config ${GIT_CONFIG_GLOBAL}"
+  diffFilter = "delta --color-only --config ${GIT_CONFIG_GLOBAL}"
 
 [delta]
-    features = decorations line-numbers
-    whitespace-error-style = black reverse
-    file-modified-label = "modified:"
+  features = decorations line-numbers
+  whitespace-error-style = black reverse
+  file-modified-label = "modified:"
 
 [delta "decorations"]
-    commit-style = magenta
-    commit-decoration-style = magenta box ul
-    file-style = bold yellow
-    file-decoration-style = yellow underline overline
-    hunk-header-style = bold blue line-number
-    hunk-header-decoration-style = blue box
-    minus-style = red
-    minus-emph-style = red
-    plus-style = green
-    plus-emph-style = green
+  commit-style = magenta
+  commit-decoration-style = magenta box ul
+  file-style = bold yellow
+  file-decoration-style = yellow underline overline
+  hunk-header-style = bold blue line-number
+  hunk-header-decoration-style = blue box
+  minus-style = red
+  minus-emph-style = red
+  plus-style = green
+  plus-emph-style = green
 
 [delta "line-numbers"]
-    line-numbers = true
-    line-numbers-minus-style = red
-    line-numbers-plus-style = green
-    line-numbers-left-format = "{nm:>3}┊ "
-    line-numbers-right-format = "{np:>3}┊ "
-    line-numbers-left-style = red
-    line-numbers-right-style = green
-    line-numbers-zero-style = dim white
+  line-numbers = true
+  line-numbers-minus-style = red
+  line-numbers-plus-style = green
+  line-numbers-left-format = "{nm:>3}┊ "
+  line-numbers-right-format = "{np:>3}┊ "
+  line-numbers-left-style = red
+  line-numbers-right-style = green
+  line-numbers-zero-style = dim white
 
 [filter "ignore-email-changes"]
-    clean = sed 's/^[[:space:]]*email = .*/  email = alex@onthe.computer/'
-    smudge = cat
+  clean = sed 's/^[[:space:]]*email = .*/  email = alex@onthe.computer/'
+  smudge = cat
