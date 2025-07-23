@@ -14,7 +14,7 @@
   unstage = reset HEAD --
 
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 
 [user]
   name = "Alexander Martin"
