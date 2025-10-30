@@ -98,6 +98,8 @@ alias lima="colima"
 
 # secrets management
 alias dp="doppler"
+alias dpr="doppler run"
+alias dpni="dpr -- npm i"
 
 # command correction
 alias f="thefuck"

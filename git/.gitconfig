@@ -39,10 +39,10 @@
   file-decoration-style = yellow underline overline
   hunk-header-style = bold blue line-number
   hunk-header-decoration-style = blue box
-  minus-style = red
-  minus-emph-style = red
-  plus-style = green
-  plus-emph-style = green
+  minus-style = syntax red
+  minus-emph-style = syntax red
+  plus-style = syntax green
+  plus-emph-style = syntax green
 
 [delta "line-numbers"]
   line-numbers = true

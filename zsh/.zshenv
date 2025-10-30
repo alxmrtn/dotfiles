@@ -22,6 +22,7 @@ export __CF_USER_TEXT_ENCODING="0x1F5:0x0:0x0"
 # brew
 export HOMEBREW_BUNDLE_FILE="${CONFIG_ROOT}/brew/.brewfile"
 export HOMEBREW_BREWFILE_CURSOR=1
+export HOMEBREW_NO_ENV_HINTS=1
 
 # zoxide/z
 export _ZO_DATA_DIR="${CONFIG_ROOT}/zsh/zoxide"
@@ -56,9 +57,6 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 
 export NODE_REPL_HISTORY="$XDG_CONFIG_HOME/nodejs/repl_history"
-# export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
-# export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-# export NPM_CONFIG_LOGS_DIR="$XDG_CONFIG_HOME/npm/logs"
 
 export PUPPETEER_CACHE_DIR="$XDG_CACHE_HOME/puppeteer"
 export PUPPETEER_EXECUTABLE_PATH="$XDG_CACHE_HOME/puppeteer/chrome/linux-*/chrome"
