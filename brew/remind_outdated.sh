@@ -1,6 +1,10 @@
 #! /bin/zsh
 # shellcheck disable=SC2148,SC1071
 
+if [[ "${TERM_PROGRAM}" != "WarpTerminal" ]]; then
+    return 0
+fi
+
 last_reminder_file="${CONFIG_ROOT}/brew/last_upgrade_reminder.txt"
 
 current_time=$(date +%s)
