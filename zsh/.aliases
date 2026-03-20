@@ -113,6 +113,17 @@ alias lip="ifconfig | rg -o 'inet (addr:)?([0-9]*\.){3}[0-9]*' | rg -o '([0-9]*\
 alias server="python3 -m http.server"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 
+# pnpm
+alias p="pnpm"
+alias pi="pnpm install"
+alias pd="pnpm run dev"
+alias pt="pnpm run test"
+alias ptc="pnpm typecheck"
+
+# shortcuts
+alias cl="clear"
+function mkdircd() { mkdir -p "$1" && cd "$1" || return; }
+
 # colors
 function colors() {
   for i in {0..255}; do

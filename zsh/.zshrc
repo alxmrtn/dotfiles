@@ -2,9 +2,10 @@
 source "${CONFIG_ROOT}/prompt/setup_prompt.sh"
 autoload -Uz setup_prompt.sh && prompt_purification_setup
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+source "${CONFIG_ROOT}/brew/.shellenv_cache"
 eval "$(${MISE_INSTALL_PATH} activate zsh)"
 eval "$(zoxide init zsh)"
+source <(fzf --zsh)
 
 # hist, it doesn't take in the .zshenv file for whatever reason
 export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"

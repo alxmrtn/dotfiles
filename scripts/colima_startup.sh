@@ -9,7 +9,11 @@ if ! command -v colima &>/dev/null; then
     return 0
 fi
 
-if ! colima status &>/dev/null; then
-    pid=$( (colima start -c "${COLIMA_CORES}" -m "${COLIMA_MEM}" &>/dev/null & echo $!) )
-    echo "==> starting colima in background (pid: ${pid})"
-fi
+setopt NO_MONITOR
+(
+    if ! colima status &>/dev/null; then
+        colima start -c "${COLIMA_CORES}" -m "${COLIMA_MEM}" &>/dev/null
+    fi
+) &>/dev/null &
+disown
+setopt MONITOR

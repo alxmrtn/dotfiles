@@ -41,7 +41,7 @@ ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 # TODO: Figure out how to sync cursor settings like installed extensions, etc.
 
 # Link config folders
-folders=("brew" "git" "prompt" "vim" "glow" "cursor" "aws" "docker" "tombi" "scripts")
+folders=("brew" "git" "prompt" "vim" "glow" "cursor" "aws" "docker" "tombi" "scripts" "python")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"
@@ -77,6 +77,9 @@ if ! command -v "/opt/homebrew/bin/brew" &>/dev/null; then
 else
   echo "🍺 Homebrew already installed"
 fi
+
+echo "🍺 Caching brew shellenv..."
+/opt/homebrew/bin/brew shellenv > "${config_root}/brew/.shellenv_cache"
 
 # Install mise if not present
 if ! command -v "${MISE_INSTALL_PATH}" &>/dev/null; then

@@ -32,6 +32,13 @@ export _Z_DATA="${CONFIG_ROOT}/zsh/.z"
 export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 
 # editor
 export VIMINIT="source ${CONFIG_ROOT}/vim/vimrc"
@@ -63,6 +70,8 @@ export PUPPETEER_EXECUTABLE_PATH="$XDG_CACHE_HOME/puppeteer/chrome/linux-*/chrom
 export PUPPETEER_USER_DATA_DIR="$XDG_CONFIG_HOME/puppeteer/user-data"
 
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup.py"
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 

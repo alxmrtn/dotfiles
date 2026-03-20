@@ -12,6 +12,9 @@
   st = status
   undo = reset HEAD~1 --mixed
   unstage = reset HEAD --
+  ac = "!f() { git add . && git commit -m \"$*\"; }; f"
+  acp = "!f() { git add . && git commit -m \"$*\" && git push; }; f"
+  spp = "!git stash && git pull --rebase && git stash pop"
 
 [push]
   autoSetupRemote = true
