@@ -13,8 +13,9 @@ export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 # aliases
 source "${HOME}/.aliases"
 
-# check for outdated packages once a day
-source "${CONFIG_ROOT}/brew/remind_outdated.sh"
+# startup scripts
+source "${CONFIG_ROOT}/scripts/colima_startup.sh"
+source "${CONFIG_ROOT}/scripts/brew_remind_outdated.sh"
 
 # load 1password plugins [aws]
 source "${CONFIG_ROOT}/op/plugins.sh"

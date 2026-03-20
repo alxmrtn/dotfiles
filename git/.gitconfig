@@ -54,6 +54,14 @@
   line-numbers-right-style = green
   line-numbers-zero-style = dim white
 
-[filter "ignore-email-changes"]
-  clean = sed 's/^[[:space:]]*email = .*/  email = alex@onthe.computer/'
+[filter "gitconfig-secrets"]
+  clean = "sed -E 's/^([[:space:]]*)email = .*/\\1email = alex@onthe.computer/' | awk '/^[[]coderabbit]/{skip=1;next} /^[[]/{skip=0} !skip'"
+  smudge = cat
+
+[filter "aws-secrets"]
+  clean = sed '/^[[:space:]]*login_session/d'
+  smudge = cat
+
+[filter "docker-secrets"]
+  clean = jq --tab '.auths = {}'
   smudge = cat

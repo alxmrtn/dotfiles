@@ -65,3 +65,8 @@ export PUPPETEER_USER_DATA_DIR="$XDG_CONFIG_HOME/puppeteer/user-data"
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+# colima
+export COLIMA_START=true
+export COLIMA_CORES=4
+export COLIMA_MEM=8

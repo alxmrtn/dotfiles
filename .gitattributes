@@ -1,1 +1,3 @@
-git/.gitconfig filter=ignore-email-changes
+git/.gitconfig filter=gitconfig-secrets
+aws/config filter=aws-secrets
+docker/config.json filter=docker-secrets

@@ -41,7 +41,7 @@ ln -sfF "${script_dir}/warp/almartin.yaml" "${HOME}/.warp/themes/almartin.yaml"
 # TODO: Figure out how to sync cursor settings like installed extensions, etc.
 
 # Link config folders
-folders=("brew" "git" "prompt" "vim" "glow" "cursor" "aws" "docker" "tombi")
+folders=("brew" "git" "prompt" "vim" "glow" "cursor" "aws" "docker" "tombi" "scripts")
 for folder in "${folders[@]}"; do
   if [[ -d "${script_dir}/${folder}" ]]; then
     ln -sfF "${script_dir}/${folder}" "${config_root}/${folder}"

@@ -16,7 +16,7 @@ twenty_four_hours=86400
 
 # Check if last_reminder file exists or if more than 24 hours have passed
 if [[ ! -f "${last_reminder_file}" ]] || [[ ${time_diff} -gt ${twenty_four_hours} ]]; then
-    echo " Checking for outdated packages, run \`brew upgrade\` to upgrade..."
+    echo "==> checking for outdated packages, run \`brew upgrade\` to upgrade..."
     brew outdated
     echo "${current_time}" > "${last_reminder_file}"
 fi
