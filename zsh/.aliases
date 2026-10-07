@@ -112,6 +112,7 @@ alias ip="curl -s https://ipinfo.io/ip"
 alias lip="ifconfig | rg -o 'inet (addr:)?([0-9]*\.){3}[0-9]*' | rg -o '([0-9]*\.){3}[0-9]*' | rg -v '127.0.0.1'"
 alias server="python3 -m http.server"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
+alias woke="caffeinate -d"
 
 # pnpm
 alias p="pnpm"

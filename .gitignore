@@ -1,5 +1,6 @@
 .venv
 brew/last_upgrade_reminder*
+brew/.shellenv_cache
 docker/contexts/*
 docker/.token_seed*
 docker/buildx/*

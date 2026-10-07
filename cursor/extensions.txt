@@ -3,7 +3,6 @@ davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
 github.vscode-github-actions
 hashicorp.terraform
-ms-vscode.vscode-typescript-next
 redhat.java
 redhat.vscode-yaml
 timonwong.shellcheck

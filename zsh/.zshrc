@@ -11,12 +11,13 @@ source <(fzf --zsh)
 export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"
 export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 
-# aliases
-source "${HOME}/.aliases"
+source "${CONFIG_ROOT}/scripts/agent_shell.sh"
+if ! is_agent_shell; then
+  source "${CONFIG_ROOT}/scripts/colima_startup.sh"
+  source "${CONFIG_ROOT}/scripts/brew_remind_outdated.sh"
 
-# startup scripts
-source "${CONFIG_ROOT}/scripts/colima_startup.sh"
-source "${CONFIG_ROOT}/scripts/brew_remind_outdated.sh"
+  source "${HOME}/.aliases"
+fi
 
 # load 1password plugins [aws]
 source "${CONFIG_ROOT}/op/plugins.sh"
