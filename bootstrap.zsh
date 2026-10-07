@@ -1,5 +1,4 @@
 #! /bin/zsh
-# shellcheck disable=SC1091,SC1071
 
 set -e  # Exit on error
 
@@ -52,6 +51,7 @@ done
 
 # Source environment
 echo "🔄 Loading environment..."
+# shuck: source=zsh/.zshenv
 source "${HOME}/.zshenv"
 
 # Copy existing history if it exists
@@ -97,6 +97,7 @@ echo "userconfig = \"${config_root}/npm/config\"" >> "${HOME}/.npmrc"
 
 # Final setup
 echo "🔄 Reloading shell configuration..."
+# shuck: source=zsh/.zshrc
 source "${HOME}/.zshrc"
 
 # Install packages and tools

@@ -1,23 +1,31 @@
-# shellcheck disable=SC2148,SC1091
-source "${CONFIG_ROOT}/prompt/setup_prompt.sh"
-autoload -Uz setup_prompt.sh && prompt_purification_setup
+# shuck: source=../prompt/setup_prompt.zsh
+source "${CONFIG_ROOT}/prompt/setup_prompt.zsh"
+autoload -Uz setup_prompt.zsh && prompt_purification_setup
 
-source "${CONFIG_ROOT}/brew/.shellenv_cache"
+# shuck: source=../scripts/brew_shellenv.zsh
+source "${CONFIG_ROOT}/scripts/brew_shellenv.zsh"
 eval "$(${MISE_INSTALL_PATH} activate zsh)"
 eval "$(zoxide init zsh)"
+# fzf prints its init script on stdout.
+# shuck: disable=C002
 source <(fzf --zsh)
 
 # hist, it doesn't take in the .zshenv file for whatever reason
 export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"
 export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 
-source "${CONFIG_ROOT}/scripts/agent_shell.sh"
+# shuck: source=../scripts/agent_shell.zsh
+source "${CONFIG_ROOT}/scripts/agent_shell.zsh"
 if ! is_agent_shell; then
-  source "${CONFIG_ROOT}/scripts/colima_startup.sh"
-  source "${CONFIG_ROOT}/scripts/brew_remind_outdated.sh"
+  # shuck: source=../scripts/colima_startup.zsh
+  source "${CONFIG_ROOT}/scripts/colima_startup.zsh"
+  # shuck: source=../scripts/brew_remind_outdated.zsh
+  source "${CONFIG_ROOT}/scripts/brew_remind_outdated.zsh"
 
+  # shuck: source=.aliases
   source "${HOME}/.aliases"
 fi
 
-# load 1password plugins [aws]
+# 1Password generates this file outside the repo.
+# shuck: disable=C003
 source "${CONFIG_ROOT}/op/plugins.sh"

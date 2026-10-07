@@ -8,10 +8,10 @@ name: "CI"
 permissions: {}
 
 jobs:
-  shellcheck:
-    name: Shellcheck
+  shuck:
+    name: Shuck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+      - name: Run Shuck
+        uses: ewhauser/shuck-action@v1

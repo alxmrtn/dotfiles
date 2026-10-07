@@ -1,5 +1,4 @@
 #! /bin/zsh
-# shellcheck disable=SC2148,SC1071
 
 if [[ "${TERM_PROGRAM}" != "WarpTerminal" ]]; then
     return 0

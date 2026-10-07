@@ -1,5 +1,3 @@
-# shellcheck disable=SC2148
-
 # config root
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${XDG_CONFIG_HOME}/local/share"
@@ -69,6 +67,8 @@ export PUPPETEER_CACHE_DIR="$XDG_CACHE_HOME/puppeteer"
 export PUPPETEER_EXECUTABLE_PATH="$XDG_CACHE_HOME/puppeteer/chrome/linux-*/chrome"
 export PUPPETEER_USER_DATA_DIR="$XDG_CONFIG_HOME/puppeteer/user-data"
 
+# Vim expands $MYVIMRC and $XDG_CONFIG_HOME; the shell must not.
+# shuck: disable=C005
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup.py"

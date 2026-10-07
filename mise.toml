@@ -1,11 +1,10 @@
 # used to test tool install and venv creation
 [tools]
 python = "3.10.11"
-shellcheck = "latest"
+"github:ewhauser/shuck" = "latest"
 
 [env]
 _.python.venv = { path = ".venv", create = true }
 
-[tasks.shellcheck]
-run = "shellcheck -x *.sh **/*.sh zsh/.aliases zsh/.zsh*"
-alias = "sc"
+[tasks.shuck]
+run = "shuck check ."

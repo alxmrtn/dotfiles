@@ -1,5 +1,4 @@
 #! /bin/zsh
-# shellcheck disable=SC2148,SC1071
 
 # True when the shell was spawned by a coding agent rather than driven by a
 # human. Each agent advertises itself with its own variable, so this is a

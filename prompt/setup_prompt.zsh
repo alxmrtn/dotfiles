@@ -1,5 +1,3 @@
-# shellcheck disable=SC2148
-
 # Purification
 # modified by Alexander Martin
 # https://github.com/alxmrtn/dotfiles/prompt/
@@ -37,7 +35,6 @@ prompt_git_info_combined() {
   BRANCH=""
 
   # Parse git status output line by line for efficiency
-  # shellcheck disable=SC2222,SC2221
   while IFS= read -r line; do
     case "$line" in
       \#\#\ *) 
@@ -50,7 +47,7 @@ prompt_git_info_combined() {
         ;;
       \?\?*) has_untracked=true ;;
       A\ *|M\ *|MM*) has_added=true ;;
-      \ M*|AM*|MM*|\ T*) has_modified=true ;;
+      \ M*|AM*|\ T*) has_modified=true ;;
       R\ *) has_renamed=true ;;
       \ D*|D\ *|AD*) has_deleted=true ;;
       UU*) has_unmerged=true ;;
@@ -98,13 +95,10 @@ prompt_ret_status() {
   echo "%(?:%F{green}»%f :%F{red}»%f )"
 }
 
-# shellcheck disable=SC2034,SC2016
 prompt_purification_setup() {
   # Set theme variables (unchanged)
   ZSH_THEME_GIT_PROMPT_PREFIX="%F{black}λ%f"
   ZSH_THEME_GIT_PROMPT_SUFFIX=""
-  ZSH_THEME_GIT_PROMPT_DIRTY=""
-  ZSH_THEME_GIT_PROMPT_CLEAN=""
 
   # if you can't see the symbols, install a nerd font
   ZSH_THEME_GIT_PROMPT_ADDED="%F{green}+%f"

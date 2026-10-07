@@ -6,9 +6,9 @@
 
 ### install
 ```
-./bootstrap.sh [--no-install] [--git-commit-email=<email@domain.com>]
+./bootstrap.zsh [--no-install] [--git-commit-email=<email@domain.com>]
 ```
 ![](preview.png)
 
 ### status
-[![CI](https://github.com/alxmrtn/dotfiles/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/alxmrtn/dotfiles/actions/workflows/shellcheck.yml)
+[![CI](https://github.com/alxmrtn/dotfiles/actions/workflows/shuck.yml/badge.svg)](https://github.com/alxmrtn/dotfiles/actions/workflows/shuck.yml)
