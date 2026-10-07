@@ -1,7 +1,7 @@
 # used to test tool install and venv creation
 [tools]
 python = "3.10.11"
-"github:ewhauser/shuck" = "latest"
+"github:ewhauser/shuck" = "0.2.3"
 
 [env]
 _.python.venv = { path = ".venv", create = true }

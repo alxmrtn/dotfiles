@@ -15,3 +15,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run Shuck
         uses: ewhauser/shuck-action@v1
+        with:
+          # Keep in sync with mise.toml.
+          shuck-version: 0.2.3
