@@ -19,28 +19,14 @@ export __CF_USER_TEXT_ENCODING="0x1F5:0x0:0x0"
 
 # brew
 export HOMEBREW_BUNDLE_FILE="${CONFIG_ROOT}/brew/.brewfile"
-export HOMEBREW_BREWFILE_CURSOR=1
 export HOMEBREW_NO_ENV_HINTS=1
 
-# zoxide/z
+# zoxide
 export _ZO_DATA_DIR="${CONFIG_ROOT}/zsh/zoxide"
-export _Z_DATA="${CONFIG_ROOT}/zsh/.z"
-
-# hist
-export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
-export HISTSIZE=10000
-export SAVEHIST=10000
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
 
 # editor
-export VIMINIT="source ${CONFIG_ROOT}/vim/vimrc"
-export EDITOR="cursor"
+# --wait so git commit and git rebase -i block until the file is closed.
+export EDITOR="cursor --wait"
 
 # git
 export GIT_CONFIG_GLOBAL="${CONFIG_ROOT}/git/.gitconfig"
@@ -61,17 +47,23 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
+
 export NODE_REPL_HISTORY="$XDG_CONFIG_HOME/nodejs/repl_history"
 
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
+export NPM_CONFIG_LOGS_DIR="${XDG_CONFIG_HOME}/npm/logs"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
 export PUPPETEER_CACHE_DIR="$XDG_CACHE_HOME/puppeteer"
-export PUPPETEER_EXECUTABLE_PATH="$XDG_CACHE_HOME/puppeteer/chrome/linux-*/chrome"
 export PUPPETEER_USER_DATA_DIR="$XDG_CONFIG_HOME/puppeteer/user-data"
+
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup.py"
+export PYTHON_HISTORY="${XDG_STATE_HOME}/python/history"
 
 # Vim expands $MYVIMRC and $XDG_CONFIG_HOME; the shell must not.
 # shuck: disable=C005
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-
-export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonstartup.py"
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 

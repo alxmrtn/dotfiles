@@ -2,9 +2,12 @@ import atexit
 import os
 import readline
 
-history_dir = os.path.join(os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config")), "python")
-os.makedirs(history_dir, exist_ok=True)
-history_file = os.path.join(history_dir, ".python_history")
+history_file = os.environ.get("PYTHON_HISTORY")
+if not history_file:
+    state_home = os.environ.get("XDG_STATE_HOME", os.path.expanduser("~/.local/state"))
+    history_file = os.path.join(state_home, "python", "history")
+
+os.makedirs(os.path.dirname(history_file), exist_ok=True)
 
 try:
     readline.read_history_file(history_file)

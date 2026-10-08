@@ -1,6 +1,6 @@
 # Purification
 # modified by Alexander Martin
-# https://github.com/alxmrtn/dotfiles/prompt/
+# https://github.com/alxmrtn/dotfiles
 
 # Based on:
 
@@ -22,8 +22,9 @@ prompt_git_info_combined() {
   local INDEX STATUS BRANCH
   local has_untracked=false has_added=false has_modified=false has_renamed=false
   local has_deleted=false has_stashed=false has_unmerged=false
-  local has_ahead=false has_behind=false has_diverged=false
+  local has_ahead=false has_behind=false
   local branch_status_enabled=true
+  local line x y header_rest tracking
 
   [[ "$GIT_DISABLE_PROMPT_BRANCH_STATUS" == "true" ]] && branch_status_enabled=false
 
@@ -37,22 +38,48 @@ prompt_git_info_combined() {
   # Parse git status output line by line for efficiency
   while IFS= read -r line; do
     case "$line" in
-      \#\#\ *) 
-        # Extract branch name from the first line
-        BRANCH="${line#\#\# }"
-        BRANCH="${BRANCH%%...*}"  # Remove tracking branch info
-        [[ "$line" == *"ahead"* ]] && has_ahead=true
-        [[ "$line" == *"behind"* ]] && has_behind=true
-        [[ "$line" == *"diverged"* ]] && has_diverged=true
+      \#\#\ *)
+        # Branch name stops at the upstream (...). Ahead/behind live only in
+        # the trailing [ahead N, behind M] bracket, so a branch named
+        # fix/behind-proxy is not treated as behind.
+        header_rest="${line#\#\# }"
+        BRANCH="${header_rest%%...*}"
+        BRANCH="${BRANCH%% \[*}"
+        if [[ "$header_rest" == *'['*']'* ]]; then
+          tracking="${header_rest##*\[}"
+          tracking="${tracking%%\]*}"
+          [[ "$tracking" == *ahead* ]] && has_ahead=true
+          [[ "$tracking" == *behind* ]] && has_behind=true
+        fi
         ;;
-      \?\?*) has_untracked=true ;;
-      A\ *|M\ *|MM*) has_added=true ;;
-      \ M*|AM*|\ T*) has_modified=true ;;
-      R\ *) has_renamed=true ;;
-      \ D*|D\ *|AD*) has_deleted=true ;;
-      UU*) has_unmerged=true ;;
+      *)
+        # Porcelain is "XY PATH". Check both characters so combined states
+        # (MM, RM, MD) keep both flags. Conflict pairs are unmerged only.
+        x="${line[1]}"
+        y="${line[2]}"
+        case "${x}${y}" in
+          AA|DD|AU|UA|DU|UD|UU)
+            has_unmerged=true
+            continue
+            ;;
+        esac
+        case "$x" in
+          \?) has_untracked=true ;;
+          A|M|T) has_added=true ;;
+          R|C) has_renamed=true ;;
+          D) has_deleted=true ;;
+        esac
+        case "$y" in
+          \?) has_untracked=true ;;
+          M|T) has_modified=true ;;
+          D) has_deleted=true ;;
+        esac
+        ;;
     esac
   done <<< "$INDEX"
+
+  # % is a prompt escape. Branch names can contain it.
+  BRANCH="${BRANCH//\%/%%}"
 
   # Check for stashed changes (only if branch status checking is enabled)
   if $branch_status_enabled && command git rev-parse --verify refs/stash >/dev/null 2>&1; then
@@ -72,7 +99,6 @@ prompt_git_info_combined() {
     $has_unmerged && STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED $STATUS"
     $has_ahead && STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD $STATUS"
     $has_behind && STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND $STATUS"
-    $has_diverged && STATUS="$ZSH_THEME_GIT_PROMPT_DIVERGED $STATUS"
   fi
 
   # Build the complete git info string
@@ -112,7 +138,7 @@ prompt_purification_setup() {
   ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}%f%b"
 
   setopt prompt_subst
-  
+
   # Simplified prompt setup using the combined function
   RPROMPT='$(prompt_git_info_combined)'
   PROMPT='$(prompt_venv_info)$USER :: %2~ %B$(prompt_ret_status)%b'

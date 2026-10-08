@@ -14,7 +14,7 @@
   unstage = reset HEAD --
   ac = "!f() { git add . && git commit -m \"$*\"; }; f"
   acp = "!f() { git add . && git commit -m \"$*\" && git push; }; f"
-  spp = "!git stash && git pull --rebase && git stash pop"
+  spp = pull --rebase --autostash
 
 [push]
   autoSetupRemote = true
@@ -23,15 +23,31 @@
   name = "Alexander Martin"
   email = alex@onthe.computer
 
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = true
+
+[fetch]
+  prune = true
+
+[rebase]
+  autoStash = true
+
+[merge]
+  conflictStyle = zdiff3
+
 [core]
   pager = "delta --config ${GIT_CONFIG_GLOBAL}"
-  syntax-theme = "ansi"
 
 [interactive]
   diffFilter = "delta --color-only --config ${GIT_CONFIG_GLOBAL}"
 
 [delta]
   features = decorations line-numbers
+  navigate = true
+  syntax-theme = ansi
   whitespace-error-style = black reverse
   file-modified-label = "modified:"
 
@@ -56,15 +72,3 @@
   line-numbers-left-style = red
   line-numbers-right-style = green
   line-numbers-zero-style = dim white
-
-[filter "gitconfig-secrets"]
-  clean = "sed -E 's/^([[:space:]]*)email = .*/\\1email = alex@onthe.computer/' | awk '/^[[]coderabbit]/{skip=1;next} /^[[]/{skip=0} !skip'"
-  smudge = cat
-
-[filter "aws-secrets"]
-  clean = sed '/^[[:space:]]*login_session/d'
-  smudge = cat
-
-[filter "docker-secrets"]
-  clean = jq --tab '.auths = {}'
-  smudge = cat

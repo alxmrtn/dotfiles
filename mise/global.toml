@@ -1,0 +1,7 @@
+[tools]
+biome = "latest"
+elixir = "latest"
+ruby = "truffleruby-33.0.1"
+
+[settings.self_update]
+auto = true

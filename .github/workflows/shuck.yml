@@ -2,19 +2,32 @@ on:
   push:
     branches:
       - main
+  pull_request:
   workflow_dispatch: {}
 
 name: "CI"
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   shuck:
     name: Shuck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Run Shuck
-        uses: ewhauser/shuck-action@v1
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+      - name: Syntax check
+        run: |
+          set -eu
+          for f in bootstrap.zsh zsh/.zshenv zsh/.zshrc zsh/.aliases prompt/setup_prompt.zsh scripts/*.zsh; do
+            zsh -n "$f"
+          done
+      - name: Install shuck
+        uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
         with:
-          # Keep in sync with mise.toml.
-          shuck-version: 0.2.3
+          # Version comes from mise.toml.
+          install_args: github:ewhauser/shuck
+      - name: Run Shuck
+        run: mise run shuck

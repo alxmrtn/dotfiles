@@ -1,22 +1,19 @@
 #! /bin/zsh
 
 if [[ "${TERM_PROGRAM}" != "WarpTerminal" ]]; then
-    return 0
+  return 0
 fi
 
 if [[ "${COLIMA_START}" != "true" ]]; then
-    return 0
+  return 0
 fi
 
 if ! command -v colima &>/dev/null; then
-    return 0
+  return 0
 fi
 
-setopt NO_MONITOR
 (
-    if ! colima status &>/dev/null; then
-        colima start -c "${COLIMA_CORES}" -m "${COLIMA_MEM}" &>/dev/null
-    fi
-) &>/dev/null &
-disown
-setopt MONITOR
+  if ! colima status &>/dev/null; then
+    colima start -c "${COLIMA_CORES}" -m "${COLIMA_MEM}" &>/dev/null
+  fi
+) &>/dev/null &!

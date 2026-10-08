@@ -1,0 +1,14 @@
+[filter "gitconfig-secrets"]
+  clean = "sed -E 's/^([[:space:]]*)email = .*/\\1email = alex@onthe.computer/' | awk '/^[[]coderabbit]/{skip=1;next} /^[[]/{skip=0} !skip'"
+  smudge = cat
+  required = true
+
+[filter "aws-secrets"]
+  clean = sed '/^[[:space:]]*login_session/d'
+  smudge = cat
+  required = true
+
+[filter "docker-secrets"]
+  clean = jq --tab '.auths = {}'
+  smudge = cat
+  required = true

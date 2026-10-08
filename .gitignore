@@ -5,3 +5,9 @@ docker/contexts/*
 docker/.token_seed*
 docker/buildx/*
 .DS_Store
+aws/credentials
+aws/sso/
+aws/cli/
+cursor/statsig-cache.json
+vim/.viminfo
+python/.python_history

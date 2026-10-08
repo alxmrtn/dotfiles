@@ -32,7 +32,12 @@ alias gc="git commit"
 
 # env
 function cenv() {
-  env -0 |\
+  if [[ $# -gt 0 ]]; then
+    command env "$@"
+    return
+  fi
+
+  command env -0 |\
     sort -z |\
     tr '\0' '\n' |\
     sed -E $'s/^([^=]+)(=)(.*)/\033[33m\\1\033[0m\033[37m\\2\033[0m\033[32m\\3\033[0m/'
@@ -45,9 +50,9 @@ alias help=tldr
 alias h=tldr
 
 #shortcuts
-alias reload="source ~/.zshrc"
-alias edit="${EDITOR}"
-alias code="${EDITOR}"
+alias reload="exec zsh"
+alias edit="cursor"
+alias code="cursor"
 alias path='echo -e ${PATH//:/\\n}'
 
 # date
@@ -99,12 +104,8 @@ alias dp="doppler"
 alias dpr="doppler run"
 alias dpni="dpr -- npm i"
 
-# command correction
-alias f="thefuck"
-alias wtf="thefuck"
-
 # util
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -"
+alias speedtest="networkQuality"
 alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 alias ip="curl -s https://ipinfo.io/ip"
 alias lip="ifconfig | rg -o 'inet (addr:)?([0-9]*\.){3}[0-9]*' | rg -o '([0-9]*\.){3}[0-9]*' | rg -v '127.0.0.1'"

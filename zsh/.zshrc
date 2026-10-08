@@ -1,6 +1,15 @@
+# /etc/zshrc resets HISTFILE, HISTSIZE, and SAVEHIST after .zshenv.
+export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+
 # shuck: source=../prompt/setup_prompt.zsh
 source "${CONFIG_ROOT}/prompt/setup_prompt.zsh"
-autoload -Uz setup_prompt.zsh && prompt_purification_setup
+prompt_purification_setup
 
 # shuck: source=../scripts/brew_shellenv.zsh
 source "${CONFIG_ROOT}/scripts/brew_shellenv.zsh"
@@ -9,10 +18,6 @@ eval "$(zoxide init zsh)"
 # fzf prints its init script on stdout.
 # shuck: disable=C002
 source <(fzf --zsh)
-
-# hist, it doesn't take in the .zshenv file for whatever reason
-export LESSHISTFILE="${CONFIG_ROOT}/less/.lesshist"
-export HISTFILE="${CONFIG_ROOT}/zsh/.zsh_history"
 
 # shuck: source=../scripts/agent_shell.zsh
 source "${CONFIG_ROOT}/scripts/agent_shell.zsh"
@@ -27,5 +32,7 @@ if ! is_agent_shell; then
 fi
 
 # 1Password generates this file outside the repo.
-# shuck: disable=C003
-source "${CONFIG_ROOT}/op/plugins.sh"
+if [[ -r "${CONFIG_ROOT}/op/plugins.sh" ]]; then
+  # shuck: disable=C003
+  source "${CONFIG_ROOT}/op/plugins.sh"
+fi
